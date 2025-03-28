@@ -40,9 +40,51 @@ def ingresar_lista():
     # Retorna la lista de números
     return numeros
 
-# Ejemplo de uso
-if __name__ == "__main__":
-    numeros = ingresar_lista()
-    resultado = analizar_lista(numeros)
+# Define una función para mostrar resultados formateados
+# Recibe un diccionario con los resultados y no retorna nada (None)
+def mostrar_resultado(resultado: dict[str, float]) -> None:
+    # Imprime un encabezado para la sección de resultados
     print("\nResultado del análisis:")
-    print(resultado)
+    
+    # Muestra la suma total con formato legible
+    print(f"Suma total: {resultado['suma']}")
+    
+    # Muestra el valor máximo encontrado
+    print(f"Valor máximo: {resultado['mayor']}")
+    
+    # Muestra el valor mínimo encontrado
+    print(f"Valor mínimo: {resultado['menor']}")
+    
+    # Muestra el promedio calculado
+    print(f"Promedio: {resultado['promedio']}")
+
+
+# No recibe parámetros y no retorna nada (None)
+def main() -> None:
+    # Muestra el título de la aplicación
+    print("Análisis de listas numéricas\n")
+    
+    try:
+        #Obtiene la lista de números del usuario
+        numeros = ingresar_lista()
+        
+        #Procesa la lista para obtener estadísticas
+        resultado = analizar_lista(numeros)
+        
+        # Muestra los resultados formateados
+        mostrar_resultado(resultado)
+        
+    #Captura errores específicos de valor
+    except ValueError as error:
+        # Muestra mensaje de error formateado
+        print(f"\nError: {error}")
+        
+    # Captura cualquier otro error inesperado
+    except Exception as error:
+        # Muestra mensaje genérico de error
+        print(f"\nOcurrió un error inesperado: {error}")
+
+
+if __name__ == "__main__":
+    # Ejecuta la función principal
+    main()
